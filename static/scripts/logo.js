@@ -1,14 +1,22 @@
 // Cool Silk Animation
 function createSilkAnimation() {
+    console.log("createSilkAnimation called");
+    
     const home = document.getElementById("home");
     const logo = document.getElementById("svg-logo");
     
+    console.log("Home element found:", home);
+    console.log("SVG logo found:", logo);
+    
     // Show the SVG logo first, centered
     if (logo) {
+        console.log("Adding visible class to SVG logo");
+        logo.style.display = 'block'; // Show the logo
         logo.classList.add('visible');
         
         // Wait a moment for the logo to be visible, then start the transition
         setTimeout(() => {
+            console.log("Removing SVG logo and creating animated logo");
             // Remove the old SVG logo
             logo.remove();
             
@@ -34,6 +42,7 @@ function createSilkAnimation() {
             }, 500);
         }, 1000);
     } else {
+        console.log("No SVG logo found, creating animated logo immediately");
         // If no SVG logo, start animation immediately
         const logoContainer = document.createElement("div");
         logoContainer.className = "silk-logo-container";
@@ -123,6 +132,8 @@ function transitionToMain() {
 
 // Initialize animation on page load
 window.addEventListener("load", () => {
+    console.log("Window load event fired");
+    
     // Prevent any initial scroll jumping
     window.scrollTo(0, 0);
     
@@ -130,12 +141,16 @@ window.addEventListener("load", () => {
     const params = new URL(document.location).searchParams;
     const showAnim = params.get("loadAnimation");
     
+    console.log("Animation parameter:", showAnim);
+    
     if (showAnim !== null && showAnim.toLowerCase() == "false") {
+        console.log("Skipping animation, showing home directly");
         // Skip animation, show home directly
         document.getElementById("home").style.display = "flex";
         return;
     }
     
+    console.log("Starting Silk animation");
     // Start the cool Silk animation
     createSilkAnimation();
 });
