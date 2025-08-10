@@ -18,20 +18,35 @@ function endAnimation() {
     // Prevent scroll jumping by maintaining scroll position
     const scrollY = window.scrollY;
     
-    document.getElementById("svg-logo").remove();
-    document.getElementById("home").style.display = "block";
+    // Fade out the logo smoothly
+    const logo = document.getElementById("svg-logo");
+    logo.style.transition = "opacity 0.5s ease";
+    logo.style.opacity = "0";
     
-    // Restore scroll position
-    window.scrollTo(0, scrollY);
-    
-    for (const element of document.getElementById("home").children) {
-        element.classList.add("animate__animated", "animate__fadeInDown");
-    }
+    setTimeout(() => {
+        logo.remove();
+        
+        // Show home section with proper display
+        const home = document.getElementById("home");
+        home.style.display = "flex";
+        
+        // Restore scroll position
+        window.scrollTo(0, scrollY);
+        
+        // Add animation classes to home elements
+        for (const element of home.children) {
+            element.classList.add("animate__animated", "animate__fadeInDown");
+        }
+    }, 500);
 }
 
 window.addEventListener("load", () => {
     // Prevent any initial scroll jumping
     window.scrollTo(0, 0);
+    
+    // Set initial state
+    const home = document.getElementById("home");
+    home.style.display = "none";
     
     setTextAnimation(0.1, 2.6, 1, "linear", "#ffffff");
     const params = new URL(document.location).searchParams;
@@ -40,6 +55,8 @@ window.addEventListener("load", () => {
         endAnimation();
         return;
     }
+    
+    // Start fade out animation after 3 seconds
     let timer = setTimeout(() => {
         let paths = document.querySelectorAll("path");
         let duration = 1000;
