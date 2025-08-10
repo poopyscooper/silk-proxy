@@ -31,25 +31,7 @@ body::before {
   pointer-events: none;
 }
 
-.svg-logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200px;
-  height: 200px;
-  opacity: 1;
-  z-index: 1;
-  transition: opacity 0.5s ease;
-}
 
-.svg-logo path {
-  fill: none;
-  stroke: #ffffff;
-  stroke-width: 1;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
 
 .home {
   position: relative;
@@ -245,6 +227,175 @@ body::before {
   
   .floating-elements {
     display: none;
+  }
+}
+
+/* Cool Silk Animation Styles */
+.silk-logo-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+.silk-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.silk-letter {
+  font-size: clamp(4rem, 12vw, 8rem);
+  font-weight: 800;
+  color: transparent;
+  background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3);
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0;
+  transform: translateY(50px) scale(0.5);
+  filter: blur(10px);
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.silk-letter[data-letter="S"] { background-position: 0% 50%; }
+.silk-letter[data-letter="i"] { background-position: 20% 50%; }
+.silk-letter[data-letter="l"] { background-position: 40% 50%; }
+.silk-letter[data-letter="k"] { background-position: 60% 50%; }
+
+.silk-subtitle {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
+  opacity: 0;
+  transform: translateY(30px);
+  filter: blur(5px);
+}
+
+/* Letter Animation */
+@keyframes silkLetterAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.5);
+    filter: blur(10px);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-10px) scale(1.1);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+/* Subtitle Animation */
+@keyframes silkSubtitleAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+/* Floating Particles */
+.silk-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  animation: particleFloat 4s ease-in-out infinite;
+}
+
+@keyframes particleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) scale(0);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(80vh) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(20vh) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0) scale(0);
+  }
+}
+
+/* Fade Out Animation */
+@keyframes silkFadeOut {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+
+/* Home Slide In */
+@keyframes homeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Element Fade In */
+@keyframes elementFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Gradient Shift Animation for Letters */
+.silk-letter {
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { 
+    background-position: 0% 50%; 
+  }
+  25% { 
+    background-position: 100% 50%; 
+  }
+  50% { 
+    background-position: 100% 100%; 
+  }
+  75% { 
+    background-position: 0% 100%; 
   }
 }
 
