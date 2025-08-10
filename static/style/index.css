@@ -38,8 +38,17 @@ body::before {
   transform: translate(-50%, -50%);
   width: 200px;
   height: 200px;
-  opacity: 0.1;
+  opacity: 1;
   z-index: 1;
+  transition: opacity 0.5s ease;
+}
+
+.svg-logo path {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .home {
@@ -48,7 +57,7 @@ body::before {
   text-align: center;
   color: white;
   padding: 2rem;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -192,6 +201,8 @@ body::before {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
   50% { transform: translateY(-20px) rotate(180deg); }
 }
+
+
 
 .subtitle {
   font-size: 1.1rem;
