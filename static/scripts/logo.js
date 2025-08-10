@@ -3,31 +3,58 @@ function createSilkAnimation() {
     const home = document.getElementById("home");
     const logo = document.getElementById("svg-logo");
     
-    // Remove the old SVG logo
+    // Show the SVG logo first, centered
     if (logo) {
-        logo.remove();
+        logo.classList.add('visible');
+        
+        // Wait a moment for the logo to be visible, then start the transition
+        setTimeout(() => {
+            // Remove the old SVG logo
+            logo.remove();
+            
+            // Create new animated logo container
+            const logoContainer = document.createElement("div");
+            logoContainer.className = "silk-logo-container";
+            logoContainer.innerHTML = `
+                <div class="silk-logo">
+                    <span class="silk-letter" data-letter="S">S</span>
+                    <span class="silk-letter" data-letter="i">i</span>
+                    <span class="silk-letter" data-letter="l">l</span>
+                    <span class="silk-letter" data-letter="k">k</span>
+                </div>
+                <div class="silk-subtitle">Access the web freely and securely</div>
+            `;
+            
+            // Insert before home content
+            home.parentNode.insertBefore(logoContainer, home);
+            
+            // Start the cool animation sequence
+            setTimeout(() => {
+                animateSilkLogo();
+            }, 500);
+        }, 1000);
+    } else {
+        // If no SVG logo, start animation immediately
+        const logoContainer = document.createElement("div");
+        logoContainer.className = "silk-logo-container";
+        logoContainer.innerHTML = `
+            <div class="silk-logo">
+                <span class="silk-letter" data-letter="S">S</span>
+                <span class="silk-letter" data-letter="i">i</span>
+                <span class="silk-letter" data-letter="l">l</span>
+                <span class="silk-letter" data-letter="k">k</span>
+            </div>
+            <div class="silk-subtitle">Access the web freely and securely</div>
+        `;
+        
+        // Insert before home content
+        home.parentNode.insertBefore(logoContainer, home);
+        
+        // Start the cool animation sequence
+        setTimeout(() => {
+            animateSilkLogo();
+        }, 500);
     }
-    
-    // Create new animated logo container
-    const logoContainer = document.createElement("div");
-    logoContainer.className = "silk-logo-container";
-    logoContainer.innerHTML = `
-        <div class="silk-logo">
-            <span class="silk-letter" data-letter="S">S</span>
-            <span class="silk-letter" data-letter="i">i</span>
-            <span class="silk-letter" data-letter="l">l</span>
-            <span class="silk-letter" data-letter="k">k</span>
-        </div>
-        <div class="silk-subtitle">Access the web freely and securely</div>
-    `;
-    
-    // Insert before home content
-    home.parentNode.insertBefore(logoContainer, home);
-    
-    // Start the cool animation sequence
-    setTimeout(() => {
-        animateSilkLogo();
-    }, 500);
 }
 
 function animateSilkLogo() {
